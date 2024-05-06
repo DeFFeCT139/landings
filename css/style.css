@@ -1,4 +1,15 @@
+body{
+    font-family: 'Google Sans';
+}
 .btn-sun{
     display: flex;
     align-items: center;
+}
+.navbar-brand{
+    font-weight: 700;
+}
+.card-img-tops{
+    height: 160px;
+    background-size: cover;
+    background-position: center;
 }
