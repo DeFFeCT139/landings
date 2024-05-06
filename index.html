@@ -27,7 +27,7 @@
     <main>
         <div class="container">
             <h1 class="mb-4 mt-3">Список моих работ</h1>
-            <div id="linkList" class="link-list grid">
+            <div id="linkList" class="link-list grid mb-5">
             </div>
         </div>
     </main>
@@ -49,8 +49,8 @@
                     <div class="card-body">
                       <h5 class="card-title">${item.name}</h5>
                       <div class="grid">
-                        <a href="${item.link}" style="width: 100%;" class="g-col-md-6 btn btn-primary">Сайт</a>
-                        <a href="${item.linkCode}" ${item.linkCode === ''? 'aria-disabled="true"': ''} style="width: 100%;" class="${item.linkCode === ''? 'disabled': ''} g-col-md-6 btn btn-primary">Код</a>
+                        <a href="${item.link}" style="width: 100%;" class="g-col-md-6 btn btn-secondary">Сайт</a>
+                        <a href="${item.linkCode}" ${item.linkCode === ''? 'aria-disabled="true"': ''} style="width: 100%;" class="${item.linkCode === ''? 'disabled': ''} g-col-md-6 btn btn-secondary">Код</a>
                       </div>
                     </div>
                 </div>
