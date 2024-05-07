@@ -27,6 +27,11 @@
     <main>
         <div class="container">
             <h1 class="mb-4 mt-3">Список моих работ</h1>
+            <select onchange="getItemList(this)" id="select" class="form-select mb-4 mt-3" aria-label="Default select example">
+                <option selected>Все</option>
+                <option>Site</option>
+                <option>App</option>
+            </select>
             <div id="linkList" class="link-list grid mb-5">
             </div>
         </div>
@@ -35,23 +40,27 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script>
         let list = [
-            {id:1, name: 'Сайт 7ya', img: './img/Opera Снимок_2024-05-06_190346_7ya.ee.png', link: 'https://7ya.ee/', linkCode: 'https://github.com/DeFFeCT139/7ya'},
-            {id:2, name: 'Сайт МТК TehnoSoft', img: './img/Opera Снимок_2024-05-06_190751_deffect139.github.io.png', link: 'https://deffect139.github.io/tehno1/', linkCode: 'https://github.com/DeFFeCT139/tehno1'},
-            {id:3, name: 'Сайт Alivia Hotel', img: './img/Opera Снимок_2024-05-06_190836_aliviahotel.com.png', link: 'https://aliviahotel.com/', linkCode: 'https://github.com/DeFFeCT139/alivia'},
-            {id:4, name: 'Сайт WETOP', img: './img/Opera Снимок_2024-05-06_192757_wetop.ru.png', link: 'https://wetop.ru/', linkCode: ''},
-            {id:5, name: 'Сайт SEMITEX', img: './img/Opera Снимок_2024-05-07_183626_127.0.0.1.png', link: 'https://deffect139.github.io/landings/sites/simitex/', linkCode: 'https://github.com/DeFFeCT139/landings/tree/master/sites/simitex'},
-            {id:6, name: 'Сайт Правильная Пастила', img: './img/Opera Снимок_2024-05-07_184457_deffect139.github.io.png', link: 'https://deffect139.github.io/pastel', linkCode: 'https://github.com/DeFFeCT139/pastel'},
+            {id:1, type: 'Site', name: 'Сайт 7ya', img: './img/Opera Снимок_2024-05-06_190346_7ya.ee.png', link: 'https://7ya.ee/', linkCode: 'https://github.com/DeFFeCT139/7ya'},
+            {id:2, type: 'Site', name: 'Сайт МТК TehnoSoft', img: './img/Opera Снимок_2024-05-06_190751_deffect139.github.io.png', link: 'https://deffect139.github.io/tehno1/', linkCode: 'https://github.com/DeFFeCT139/tehno1'},
+            {id:3, type: 'Site', name: 'Сайт Alivia Hotel', img: './img/Opera Снимок_2024-05-06_190836_aliviahotel.com.png', link: 'https://aliviahotel.com/', linkCode: 'https://github.com/DeFFeCT139/alivia'},
+            {id:4, type: 'Site', name: 'Сайт WETOP', img: './img/Opera Снимок_2024-05-06_192757_wetop.ru.png', link: 'https://wetop.ru/', linkCode: ''},
+            {id:5, type: 'Site', name: 'Сайт SEMITEX', img: './img/Opera Снимок_2024-05-07_183626_127.0.0.1.png', link: 'https://deffect139.github.io/landings/sites/simitex/', linkCode: 'https://github.com/DeFFeCT139/landings/tree/master/sites/simitex'},
+            {id:6, type: 'Site', name: 'Сайт Правильная Пастила', img: './img/Opera Снимок_2024-05-07_184457_deffect139.github.io.png', link: 'https://deffect139.github.io/pastel', linkCode: 'https://github.com/DeFFeCT139/pastel'},
+            {id:7, type: 'App', name: 'App автопечать', img: './img/GettyImages-908200362.webp', link: '', linkCode: 'https://github.com/DeFFeCT139/aytokey'},
         ]
 
-        const getItemList = (list) => {
+        const getItemList = (select) => {
             let item = document.getElementById('linkList')
-            const html = list.map((item) => `
+            if (select === undefined) select = 'Все' 
+            let lists = list.filter(item => item.type === select.value)
+            if (lists.length === 0) lists = list
+            const html = lists.map((item) => `
                 <div class="card bg-body-tertiary g-col-12 g-col-xl-3 g-col-lg-4 g-col-md-6 g-col-sm-12">
                     <div style="background-image: url('${item.img}')" class="card-img-top card-img-tops"></div>
                     <div class="card-body">
                       <h5 class="card-title">${item.name}</h5>
                       <div class="grid">
-                        <a href="${item.link}" style="width: 100%;" class="g-col-md-6 btn btn-secondary">Сайт</a>
+                        <a href="${item.link}" ${item.link === ''? 'aria-disabled="true"': ''} style="width: 100%;" class="${item.link === ''? 'disabled': ''} g-col-md-6 btn btn-secondary">Сайт</a>
                         <a href="${item.linkCode}" ${item.linkCode === ''? 'aria-disabled="true"': ''} style="width: 100%;" class="${item.linkCode === ''? 'disabled': ''} g-col-md-6 btn btn-secondary">Код</a>
                       </div>
                     </div>
@@ -59,7 +68,7 @@
             `).join('');
             item.innerHTML = html;
         }
-        getItemList(list)
+        getItemList()
 
         const thems = () => {
             if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
