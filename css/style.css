@@ -13,3 +13,25 @@ body{
     background-size: cover;
     background-position: center;
 }
+.card-img-item{
+    display: flex;
+    column-gap: 7px;
+    margin-bottom: 7px;
+    padding: 3px;
+}
+.card-img-item > img{
+    width: 25px ;
+    cursor: pointer;
+}
+.modalSteck{
+    display: flex;
+    column-gap: 7px;
+    margin-bottom: 7px;
+}
+.modalSteck > img{
+    width: 25px ;
+}
+.modalBody-img{
+    width: 100%;
+    border-radius: 5px;
+}
