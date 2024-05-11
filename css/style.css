@@ -35,3 +35,12 @@ body{
     width: 100%;
     border-radius: 5px;
 }
+.navbar-right-block{
+    display: flex;
+    gap: 10px;
+}
+.navbar-right-block > a{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
